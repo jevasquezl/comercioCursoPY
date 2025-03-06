@@ -1,0 +1,3 @@
+Lo sentimos {{ usuario.nombre }} {{ usuario.apellido }}!
+
+No fue posible registrarse en Comercio Curso App!

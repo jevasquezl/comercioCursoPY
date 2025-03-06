@@ -6,7 +6,7 @@ from main.models import UsuarioModel
 from flask_jwt_extended import create_access_token
 from main.auth.decorators import user_identity_lookup
 from main.auth.decorators import role_required
-# from main.mail.functions import send_mail
+from main.mail.functions import send_mail
 
 auth = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -42,12 +42,13 @@ def register():
     usuario = UsuarioModel.from_json(request.get_json())
     exits = db.session.query(UsuarioModel).filter(UsuarioModel.email == usuario.email).scalar() is not None
     if exits:
+        send_mail([usuario.email], "Bienvenido", 'fallido', usuario = usuario)
         return 'Duplicated email', 409
     else:
         try:
             db.session.add(usuario)
             db.session.commit()
-            # send_mail([usuario.email], "Bienvenido", 'register', usuario = usuario)
+            send_mail([usuario.email], "Bienvenido", 'register', usuario = usuario)
         except Exception as error:
             db.session.rollback()
             return str(error), 409

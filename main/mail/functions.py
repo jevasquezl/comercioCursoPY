@@ -20,9 +20,9 @@ mail = Blueprint('mail', __name__, url_prefix='/mail')
 
 
 @mail.route('/newsletter', methods=['POST'])
-@role_required(roles=["admin"])
+@role_required(roles=[1,2])
 def newsletter():
-    usuarios = db.session.query(UsuarioModel).filter(UsuarioModel.role == 'cliente').all()
+    usuarios = db.session.query(UsuarioModel).filter(UsuarioModel.nombre == 'prueba').all()
     productos = db.session.query(ProductoModel).all()
     try:
         for usuario in usuarios:

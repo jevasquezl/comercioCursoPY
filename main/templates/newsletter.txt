@@ -1,5 +1,7 @@
-Hola {{usuario.nombre}} {{usuario.apellido}}!
+Hola {{usuario.nombre}} - {{usuario.apellido}}!
 
-{% for producto in productos %}
-    {{producto}}
+Estos son nuestros producto en demanda
+--------------------------------------
+{% for nombre in productos %}
+    {{nombre}}
 {% endfor %}
