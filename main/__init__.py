@@ -54,14 +54,20 @@ def create_app():
     db.init_app(app)
 
     import main.resources as resources
+    import main.controllers as controllers
+
     api.add_resource(resources.ClientesResource, '/clientes')
     api.add_resource(resources.ClienteResource, '/cliente/<id>')
 
     api.add_resource(resources.UsuariosResource, '/usuarios')
     api.add_resource(resources.UsuarioResource, '/usuario/<id>')
 
-    api.add_resource(resources.ComprasResource, '/compras')
-    api.add_resource(resources.CompraResource, '/compra/<id>')
+    # api.add_resource(resources.ComprasResource, '/compras')
+    # api.add_resource(resources.CompraResource, '/compra/<id>')
+    
+    api.add_resource(controllers.CompraController, '/compra/<id>')
+    api.add_resource(controllers.ComprasController, '/compras')
+
     api.add_resource(resources.ProductosResource, '/productos')
     api.add_resource(resources.ProductoResource, '/producto/<id>')
     api.add_resource(resources.ProductosComprasResource, '/productos-compras')

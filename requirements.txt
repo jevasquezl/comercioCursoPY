@@ -8,3 +8,4 @@ flask-cors
 flask-login
 SQLAlchemy==1.4.23
 pyodbc
+marshmallow==3.26.1
